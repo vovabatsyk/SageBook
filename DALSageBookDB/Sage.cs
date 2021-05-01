@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Security.AccessControl;
+﻿using System.Collections.Generic;
 
 namespace DALSageBookDB
 {
@@ -16,6 +14,7 @@ namespace DALSageBookDB
             Books = new List<Book>();
         }
 
+        public override string ToString() => $"Name: {Name}, age: {Age}";
     }
 
 }

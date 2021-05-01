@@ -29,7 +29,6 @@ namespace SageBookWinForms
         /// </summary>
         private void InitializeComponent()
         {
-            this.button1 = new System.Windows.Forms.Button();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
@@ -45,21 +44,13 @@ namespace SageBookWinForms
             this.addToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.deleteToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.updateToolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
-            this.dataGridViewShow = new System.Windows.Forms.DataGridView();
             this.showToolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
+            this.dataGridViewShow = new System.Windows.Forms.DataGridView();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewShow)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
-            // 
-            // button1
-            // 
-            this.button1.Location = new System.Drawing.Point(2, 140);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 0;
-            this.button1.Text = "button1";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // menuStrip1
             // 
@@ -70,7 +61,7 @@ namespace SageBookWinForms
             this.sageBookToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(126, 450);
+            this.menuStrip1.Size = new System.Drawing.Size(77, 450);
             this.menuStrip1.TabIndex = 1;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -83,13 +74,13 @@ namespace SageBookWinForms
             this.updateToolStripMenuItem,
             this.showToolStripMenuItem});
             this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
-            this.fileToolStripMenuItem.Size = new System.Drawing.Size(113, 19);
+            this.fileToolStripMenuItem.Size = new System.Drawing.Size(64, 19);
             this.fileToolStripMenuItem.Text = "Sage";
             // 
             // toolStripMenuItem2
             // 
             this.toolStripMenuItem2.Name = "toolStripMenuItem2";
-            this.toolStripMenuItem2.Size = new System.Drawing.Size(180, 22);
+            this.toolStripMenuItem2.Size = new System.Drawing.Size(112, 22);
             this.toolStripMenuItem2.Text = "Add";
             this.toolStripMenuItem2.Click += new System.EventHandler(this.toolStripMenuItem2_Click);
             // 
@@ -98,12 +89,14 @@ namespace SageBookWinForms
             this.toolStripMenuItem3.Name = "toolStripMenuItem3";
             this.toolStripMenuItem3.Size = new System.Drawing.Size(112, 22);
             this.toolStripMenuItem3.Text = "Delete";
+            this.toolStripMenuItem3.Click += new System.EventHandler(this.toolStripMenuItem3_Click);
             // 
             // updateToolStripMenuItem
             // 
             this.updateToolStripMenuItem.Name = "updateToolStripMenuItem";
             this.updateToolStripMenuItem.Size = new System.Drawing.Size(112, 22);
             this.updateToolStripMenuItem.Text = "Update";
+            this.updateToolStripMenuItem.Click += new System.EventHandler(this.updateToolStripMenuItem_Click);
             // 
             // showToolStripMenuItem
             // 
@@ -126,25 +119,27 @@ namespace SageBookWinForms
             // toolStripMenuItem4
             // 
             this.toolStripMenuItem4.Name = "toolStripMenuItem4";
-            this.toolStripMenuItem4.Size = new System.Drawing.Size(180, 22);
+            this.toolStripMenuItem4.Size = new System.Drawing.Size(112, 22);
             this.toolStripMenuItem4.Text = "Add";
+            this.toolStripMenuItem4.Click += new System.EventHandler(this.toolStripMenuItem4_Click);
             // 
             // deleteToolStripMenuItem
             // 
             this.deleteToolStripMenuItem.Name = "deleteToolStripMenuItem";
-            this.deleteToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.deleteToolStripMenuItem.Size = new System.Drawing.Size(112, 22);
             this.deleteToolStripMenuItem.Text = "Delete";
+            this.deleteToolStripMenuItem.Click += new System.EventHandler(this.deleteToolStripMenuItem_Click);
             // 
             // updateToolStripMenuItem1
             // 
             this.updateToolStripMenuItem1.Name = "updateToolStripMenuItem1";
-            this.updateToolStripMenuItem1.Size = new System.Drawing.Size(180, 22);
+            this.updateToolStripMenuItem1.Size = new System.Drawing.Size(112, 22);
             this.updateToolStripMenuItem1.Text = "Update";
             // 
             // showToolStripMenuItem1
             // 
             this.showToolStripMenuItem1.Name = "showToolStripMenuItem1";
-            this.showToolStripMenuItem1.Size = new System.Drawing.Size(180, 22);
+            this.showToolStripMenuItem1.Size = new System.Drawing.Size(112, 22);
             this.showToolStripMenuItem1.Text = "Show";
             this.showToolStripMenuItem1.Click += new System.EventHandler(this.showToolStripMenuItem1_Click);
             // 
@@ -156,7 +151,7 @@ namespace SageBookWinForms
             this.updateToolStripMenuItem2,
             this.showToolStripMenuItem2});
             this.sageBookToolStripMenuItem.Name = "sageBookToolStripMenuItem";
-            this.sageBookToolStripMenuItem.Size = new System.Drawing.Size(113, 19);
+            this.sageBookToolStripMenuItem.Size = new System.Drawing.Size(64, 19);
             this.sageBookToolStripMenuItem.Text = "SageBook";
             // 
             // addToolStripMenuItem
@@ -177,46 +172,60 @@ namespace SageBookWinForms
             this.updateToolStripMenuItem2.Size = new System.Drawing.Size(112, 22);
             this.updateToolStripMenuItem2.Text = "Update";
             // 
+            // showToolStripMenuItem2
+            // 
+            this.showToolStripMenuItem2.Name = "showToolStripMenuItem2";
+            this.showToolStripMenuItem2.Size = new System.Drawing.Size(112, 22);
+            this.showToolStripMenuItem2.Text = "Show";
+            this.showToolStripMenuItem2.Click += new System.EventHandler(this.showToolStripMenuItem2_Click);
+            // 
             // dataGridViewShow
             // 
             this.dataGridViewShow.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dataGridViewShow.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridViewShow.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dataGridViewShow.Location = new System.Drawing.Point(126, 0);
+            this.dataGridViewShow.Enabled = false;
+            this.dataGridViewShow.Location = new System.Drawing.Point(77, 0);
             this.dataGridViewShow.Name = "dataGridViewShow";
             this.dataGridViewShow.ReadOnly = true;
-            this.dataGridViewShow.Size = new System.Drawing.Size(674, 450);
+            this.dataGridViewShow.Size = new System.Drawing.Size(723, 450);
             this.dataGridViewShow.TabIndex = 2;
             // 
-            // showToolStripMenuItem2
+            // pictureBox1
             // 
-            this.showToolStripMenuItem2.Name = "showToolStripMenuItem2";
-            this.showToolStripMenuItem2.Size = new System.Drawing.Size(180, 22);
-            this.showToolStripMenuItem2.Text = "Show";
-            this.showToolStripMenuItem2.Click += new System.EventHandler(this.showToolStripMenuItem2_Click);
+            this.pictureBox1.BackColor = System.Drawing.SystemColors.Control;
+            this.pictureBox1.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.pictureBox1.Image = global::SageBookWinForms.Properties.Resources.github1;
+            this.pictureBox1.Location = new System.Drawing.Point(0, 390);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(77, 48);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox1.TabIndex = 4;
+            this.pictureBox1.TabStop = false;
+            this.pictureBox1.Click += new System.EventHandler(this.pictureBox1_Click);
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.dataGridViewShow);
-            this.Controls.Add(this.button1);
             this.Controls.Add(this.menuStrip1);
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "Form1";
-            this.Text = "Form1";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.Text = "SageBook";
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewShow)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
         }
 
         #endregion
-
-        private System.Windows.Forms.Button button1;
         private System.Windows.Forms.MenuStrip menuStrip1;
         private System.Windows.Forms.ToolStripMenuItem fileToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem2;
@@ -234,6 +243,7 @@ namespace SageBookWinForms
         private System.Windows.Forms.ToolStripMenuItem updateToolStripMenuItem2;
         private System.Windows.Forms.DataGridView dataGridViewShow;
         private System.Windows.Forms.ToolStripMenuItem showToolStripMenuItem2;
+        private System.Windows.Forms.PictureBox pictureBox1;
     }
 }
 

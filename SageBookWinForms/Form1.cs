@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Configuration;
 using System.Linq;
-using System.Security.Cryptography;
 using System.Windows.Forms;
 using DALSageBookDB;
 using Repository;
@@ -10,13 +9,12 @@ namespace SageBookWinForms
 {
     public partial class Form1 : Form
     {
-        private string _conStr;
-        public GenericUnitOfWork Work;
+        public static GenericUnitOfWork Work;
         public Form1()
         {
             InitializeComponent();
-            _conStr = ConfigurationManager.ConnectionStrings["conStr"].ConnectionString;
-            Work = new GenericUnitOfWork(new SageBookContext(_conStr));
+            var conStr = ConfigurationManager.ConnectionStrings["conStr"].ConnectionString;
+            Work = new GenericUnitOfWork(new SageBookContext(conStr));
             dataGridViewShow.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             ShowDataSageBook();
         }
@@ -135,8 +133,42 @@ namespace SageBookWinForms
 
         private void toolStripMenuItem2_Click(object sender, EventArgs e)
         {
-            AddSageForm addSageForm = new AddSageForm();
+            var addSageForm = new AddSageForm();
             addSageForm.ShowDialog();
+        }
+
+        private void toolStripMenuItem4_Click(object sender, EventArgs e)
+        {
+            var addBookForm = new AddBookForm();
+            addBookForm.ShowDialog();
+        }
+
+        private void toolStripMenuItem3_Click(object sender, EventArgs e)
+        {
+            var deleteSageForm = new DeleteSageForm();
+            deleteSageForm.ShowDialog();
+        }
+
+        private void deleteToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var deleteBookForm = new DeleteBookForm();
+            deleteBookForm.ShowDialog();
+        }
+
+        private void updateToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var editSageForm = new EditSageForm();
+            editSageForm.ShowDialog();
+        }
+
+        private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            System.Diagnostics.Process.Start("https://github.com/vovabatsyk/SageBook");
+        }
+
+        private void pictureBox1_Click(object sender, EventArgs e)
+        {
+            System.Diagnostics.Process.Start("https://github.com/vovabatsyk/SageBook");
         }
     }
 }

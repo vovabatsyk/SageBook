@@ -12,11 +12,16 @@ using Repository;
 
 namespace SageBookWinForms
 {
-    public partial class AddSageForm : Form
+    public partial class AddBookForm : Form
     {
-        public AddSageForm()
+        public AddBookForm()
         {
             InitializeComponent();
+        }
+
+        private void groupBox1_Enter(object sender, EventArgs e)
+        {
+
         }
 
         private void button2_Click(object sender, EventArgs e)
@@ -28,30 +33,29 @@ namespace SageBookWinForms
         {
             try
             {
-               
+
                 var work = Form1.Work;
-                var sageName = !string.IsNullOrWhiteSpace(textBox1.Text);
-                IGenericRepository<Sage> repository = work.Repository<Sage>();
-                if (sageName)
+                var bookName = !string.IsNullOrWhiteSpace(textBox1.Text);
+                var repository = work.Repository<Book>();
+                if (bookName)
                 {
-                    var sage = new Sage()
+                    var book = new Book()
                     {
-                        Name = textBox1.Text,
-                        Age = Convert.ToInt32(numericUpDown1.Value)
+                        Title = textBox1.Text,
+                        Pages = Convert.ToInt32(numericUpDown1.Value)
                     };
-                    repository.Add(sage);
+                    repository.Add(book);
                     Close();
                 }
                 else
                 {
-                    MessageBox.Show("Name is required", String.Empty, MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBox.Show("Title is required", String.Empty, MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
             }
             catch (Exception exception)
             {
                 MessageBox.Show(exception.Message);
             }
-
         }
     }
 }
