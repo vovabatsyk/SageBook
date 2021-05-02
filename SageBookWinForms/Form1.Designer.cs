@@ -177,6 +177,7 @@ namespace SageBookWinForms
             this.updateToolStripMenuItem2.Name = "updateToolStripMenuItem2";
             this.updateToolStripMenuItem2.Size = new System.Drawing.Size(180, 22);
             this.updateToolStripMenuItem2.Text = "Update";
+            this.updateToolStripMenuItem2.Click += new System.EventHandler(this.updateToolStripMenuItem2_Click);
             // 
             // showToolStripMenuItem2
             // 

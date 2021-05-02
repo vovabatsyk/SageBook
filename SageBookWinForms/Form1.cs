@@ -204,5 +204,11 @@ namespace SageBookWinForms
             AddUpdateDeleteSageBook sageBook = new AddUpdateDeleteSageBook("Delete");
             sageBook.ShowDialog();
         }
+
+        private void updateToolStripMenuItem2_Click(object sender, EventArgs e)
+        {
+            AddUpdateDeleteSageBook sageBook = new AddUpdateDeleteSageBook("Update");
+            sageBook.ShowDialog();
+        }
     }
 }

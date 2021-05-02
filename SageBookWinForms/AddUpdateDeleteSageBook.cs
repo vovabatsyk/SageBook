@@ -110,6 +110,9 @@ namespace SageBookWinForms
                 case "Delete":
                     listBoxSageBook.Enabled = true;
                     break;
+                case "Update":
+                    listBoxSageBook.Enabled = true;
+                    break;
             }
         }
 
@@ -151,6 +154,9 @@ namespace SageBookWinForms
                 case "Delete":
                     DeleteSageBook();
                     break;
+                case "Update":
+                    UpdateSageBook();
+                    break;
             }
         }
 
@@ -168,12 +174,49 @@ namespace SageBookWinForms
                     listBoxSageBook.Items.Clear();
                     LoadSageBooks();
                 }
-
-
             }
             catch (Exception e)
             {
                 MessageBox.Show(e.Message);
+            }
+        }
+
+        private void UpdateSageBook()
+        {
+            try
+            {
+                var work = Form1.Work;
+                var repository = work.Repository<SageBook>();
+
+                var book = listBoxBook.SelectedItem as Book;
+                var sage = listBoxSage.SelectedItem as Sage;
+                if (listBoxSageBook.SelectedItem is NewSageBook item)
+                {
+                    var sageBook = repository.FindById(item.Id);
+                    if (book != null) sageBook.IdBook = book.Id;
+                    if (sage != null) sageBook.IdSage = sage.Id;
+                    repository.Update(sageBook);
+                    listBoxSageBook.Items.Clear();
+                    listBoxSage.Enabled = false;
+                    listBoxBook.Enabled = false;
+                    LoadSageBooks();
+                }
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show(e.Message);
+            }
+        }
+
+        private void listBoxSageBook_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (_flag == "Update")
+            {
+                if (listBoxSageBook.SelectedIndex >= 0)
+                {
+                    listBoxBook.Enabled = true;
+                    listBoxSage.Enabled = true;
+                }
             }
         }
     }

@@ -118,6 +118,7 @@ namespace SageBookWinForms
             this.listBoxSageBook.Name = "listBoxSageBook";
             this.listBoxSageBook.Size = new System.Drawing.Size(512, 121);
             this.listBoxSageBook.TabIndex = 0;
+            this.listBoxSageBook.SelectedIndexChanged += new System.EventHandler(this.listBoxSageBook_SelectedIndexChanged);
             // 
             // AddUpdateDeleteSageBook
             // 
