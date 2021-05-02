@@ -69,6 +69,12 @@
     <Compile Include="AddSageForm.Designer.cs">
       <DependentUpon>AddSageForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="AddUpdateDeleteForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AddUpdateDeleteForm.Designer.cs">
+      <DependentUpon>AddUpdateDeleteForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="DeleteBookForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -106,6 +112,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="AddSageForm.resx">
       <DependentUpon>AddSageForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AddUpdateDeleteForm.resx">
+      <DependentUpon>AddUpdateDeleteForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="DeleteBookForm.resx">
       <DependentUpon>DeleteBookForm.cs</DependentUpon>

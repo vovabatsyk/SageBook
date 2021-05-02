@@ -57,5 +57,10 @@ namespace SageBookWinForms
                 MessageBox.Show(exception.Message);
             }
         }
+
+        private void AddBookForm_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

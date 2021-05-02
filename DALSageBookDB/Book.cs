@@ -12,5 +12,7 @@ namespace DALSageBookDB
         {
             Sages = new List<Sage>();
         }
+
+        public override string ToString() => $"Title: {Title}, pages: {Pages.ToString()}";
     }
 }

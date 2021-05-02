@@ -133,32 +133,43 @@ namespace SageBookWinForms
 
         private void toolStripMenuItem2_Click(object sender, EventArgs e)
         {
-            var addSageForm = new AddSageForm();
-            addSageForm.ShowDialog();
+            //var addSageForm = new AddSageForm();
+            //dataGridViewShow.DataSource = null;
+            //addSageForm.ShowDialog();
+            AddUpdateDeleteForm form = new AddUpdateDeleteForm("AddSage", "Sage");
+            form.ShowDialog();
         }
 
         private void toolStripMenuItem4_Click(object sender, EventArgs e)
         {
-            var addBookForm = new AddBookForm();
-            addBookForm.ShowDialog();
+            //var addBookForm = new AddBookForm();
+            //addBookForm.ShowDialog();
+            AddUpdateDeleteForm form = new AddUpdateDeleteForm("AddBook", "Book");
+            form.ShowDialog();
         }
 
         private void toolStripMenuItem3_Click(object sender, EventArgs e)
         {
-            var deleteSageForm = new DeleteSageForm();
-            deleteSageForm.ShowDialog();
+            //var deleteSageForm = new DeleteSageForm();
+            //deleteSageForm.ShowDialog();
+            AddUpdateDeleteForm form = new AddUpdateDeleteForm("DeleteSage", "Sage");
+            form.ShowDialog();
         }
 
         private void deleteToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            var deleteBookForm = new DeleteBookForm();
-            deleteBookForm.ShowDialog();
+            //var deleteBookForm = new DeleteBookForm();
+            //deleteBookForm.ShowDialog();
+            AddUpdateDeleteForm form = new AddUpdateDeleteForm("DeleteBook", "Book");
+            form.ShowDialog();
         }
 
         private void updateToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            var editSageForm = new EditSageForm();
-            editSageForm.ShowDialog();
+            //var editSageForm = new EditSageForm();
+            //editSageForm.ShowDialog();
+            AddUpdateDeleteForm form = new AddUpdateDeleteForm("UpdateSage", "Sage");
+            form.ShowDialog();
         }
 
         private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
@@ -169,6 +180,17 @@ namespace SageBookWinForms
         private void pictureBox1_Click(object sender, EventArgs e)
         {
             System.Diagnostics.Process.Start("https://github.com/vovabatsyk/SageBook");
+        }
+
+        private void button1_Click_1(object sender, EventArgs e)
+        {
+            Application.Exit();
+        }
+
+        private void updateToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            AddUpdateDeleteForm form = new AddUpdateDeleteForm("UpdateBook", "Book");
+            form.ShowDialog();
         }
     }
 }
