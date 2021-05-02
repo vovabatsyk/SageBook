@@ -12,7 +12,7 @@ namespace SageBookWinForms
     {
         private readonly string _flag;
         private readonly string _load;
-     
+
         public AddUpdateDeleteForm(string flag, string load)
         {
             InitializeComponent();
@@ -35,33 +35,33 @@ namespace SageBookWinForms
                 switch (_flag)
                 {
                     case "UpdateSage":
-                    {
-                        textBox1.Enabled = true;
-                        numericUpDown1.Enabled = true;
-                        if (listBox.SelectedItem is Sage sage)
                         {
-                            textBox1.Text = sage.Name;
-                            numericUpDown1.Value = sage.Age;
+                            textBox1.Enabled = true;
+                            numericUpDown1.Enabled = true;
+                            if (listBox.SelectedItem is Sage sage)
+                            {
+                                textBox1.Text = sage.Name;
+                                numericUpDown1.Value = sage.Age;
+                            }
+                            button1.Enabled = true;
+                            break;
                         }
-                        button1.Enabled = true;
-                        break;
-                    }
                     case "DeleteSage":
                         button1.Enabled = true;
                         break;
 
                     case "UpdateBook":
-                    {
-                        textBox1.Enabled = true;
-                        numericUpDown1.Enabled = true;
-                        if (listBox.SelectedItem is Book book)
                         {
-                            textBox1.Text = book.Title;
-                            numericUpDown1.Value = book.Pages;
+                            textBox1.Enabled = true;
+                            numericUpDown1.Enabled = true;
+                            if (listBox.SelectedItem is Book book)
+                            {
+                                textBox1.Text = book.Title;
+                                numericUpDown1.Value = book.Pages;
+                            }
+                            button1.Enabled = true;
+                            break;
                         }
-                        button1.Enabled = true;
-                        break;
-                    }
                     case "DeleteBook":
                         button1.Enabled = true;
                         break;
@@ -203,7 +203,7 @@ namespace SageBookWinForms
                 }
                 else
                 {
-                    MessageBox.Show(@"All fields are required", Empty, MessageBoxButtons.OK,MessageBoxIcon.Information);
+                    MessageBox.Show(@"All fields are required", Empty, MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
             }
             catch (Exception e)
@@ -248,16 +248,32 @@ namespace SageBookWinForms
         {
             try
             {
-                if (listBox.SelectedIndex >=0)
+                if (listBox.SelectedIndex >= 0)
                 {
 
                     var work = Form1.Work;
-                    IGenericRepository<Sage> repository = work.Repository<Sage>();
-                    var sage = listBox.SelectedItem as  Sage;
-                    repository.Remove(sage);
-                    listBox.Items.Clear();
-                    button1.Enabled = false;
-                    LoadData(_load);
+                    var repository = work.Repository<Sage>();
+                    var repositorySageBook = work.Repository<SageBook>();
+
+
+                    if (listBox.SelectedItem is Sage sage)
+                    {
+                        var isSage = repositorySageBook.GetAll().FirstOrDefault(x => x.IdSage == sage.Id);
+
+                        if (isSage == null)
+                        {
+                            repository.Remove(sage);
+                            listBox.Items.Clear();
+                            button1.Enabled = false;
+                            LoadData(_load);
+                        }
+                        else
+                        {
+                            MessageBox.Show($@"Sage {sage.Name} have a book!");
+                        }
+                    }
+
+
                 }
             }
             catch (Exception e)
@@ -274,12 +290,25 @@ namespace SageBookWinForms
                 {
 
                     var work = Form1.Work;
-                    IGenericRepository<Book> repository = work.Repository<Book>();
-                    var book = listBox.SelectedItem as Book;
-                    repository.Remove(book);
-                    listBox.Items.Clear();
-                    button1.Enabled = false;
-                    LoadData(_load);
+                    var repository = work.Repository<Book>();
+                    var repositorySageBook = work.Repository<SageBook>();
+                    if (listBox.SelectedItem is Book book)
+                    {
+                        var isBook = repositorySageBook.GetAll().FirstOrDefault(x => x.IdBook == book.Id);
+                        if (isBook == null)
+                        {
+                            repository.Remove(book);
+                            listBox.Items.Clear();
+                            button1.Enabled = false;
+                            LoadData(_load);
+                        }
+                        else
+                        {
+                            MessageBox.Show($@"Book title: '{book.Title}' have a sage!");
+                        }
+                    }
+
+
                 }
             }
             catch (Exception e)
@@ -296,7 +325,9 @@ namespace SageBookWinForms
                 {
 
                     var work = Form1.Work;
-                    IGenericRepository<Sage> repository = work.Repository<Sage>();
+                    var repository = work.Repository<Sage>();
+                    var repositorySageBook = work.Repository<SageBook>();
+
                     if (listBox.SelectedItem is Sage sage)
                     {
                         sage.Name = textBox1.Text;
@@ -351,6 +382,6 @@ namespace SageBookWinForms
             }
         }
 
-       
+
     }
 }
