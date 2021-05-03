@@ -23,6 +23,8 @@ namespace SageBookWinForms
             LoadData(_load);
         }
 
+        #region Events
+
         private void button2_Click(object sender, EventArgs e)
         {
             Close();
@@ -98,6 +100,10 @@ namespace SageBookWinForms
         {
             button1.Enabled = true;
         }
+
+        #endregion
+
+        #region Methods
 
         private void ControlsName(string flag)
         {
@@ -326,7 +332,6 @@ namespace SageBookWinForms
 
                     var work = Form1.Work;
                     var repository = work.Repository<Sage>();
-                    var repositorySageBook = work.Repository<SageBook>();
 
                     if (listBox.SelectedItem is Sage sage)
                     {
@@ -382,6 +387,7 @@ namespace SageBookWinForms
             }
         }
 
+        #endregion
 
     }
 }

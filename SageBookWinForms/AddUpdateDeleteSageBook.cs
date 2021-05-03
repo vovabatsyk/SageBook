@@ -17,10 +17,44 @@ namespace SageBookWinForms
             ChangeState(_flag);
         }
 
+        #region Events
+
         private void button2_Click(object sender, EventArgs e)
         {
             Close();
         }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            switch (_flag)
+            {
+                case "Add":
+                    AddSageBook();
+                    break;
+                case "Delete":
+                    DeleteSageBook();
+                    break;
+                case "Update":
+                    UpdateSageBook();
+                    break;
+            }
+        }
+        
+        private void listBoxSageBook_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (_flag == "Update")
+            {
+                if (listBoxSageBook.SelectedIndex >= 0)
+                {
+                    listBoxBook.Enabled = true;
+                    listBoxSage.Enabled = true;
+                }
+            }
+        }
+
+        #endregion
+
+        #region Methods
 
         private void LoadData()
         {
@@ -76,16 +110,15 @@ namespace SageBookWinForms
                 var repositorySage = work.Repository<Sage>();
 
                 var sageBook = repository.GetAll().ToList();
-                //                var b = sageBook.Select(x => new {ID = x.Id }).ToList();
                 var data = sageBook.Select(x => new NewSageBook()
                 {
                     Id = x.Id,
                     IdBook = x.IdBook,
                     IdSage = x.IdSage,
-                    Book_Title = repositoryBook.FindById(x.IdBook).Title,
-                    Book_Pages = repositoryBook.FindById(x.IdBook).Pages,
-                    Sage_Name = repositorySage.FindById(x.IdSage).Name,
-                    Sage_Age = repositorySage.FindById(x.IdSage).Age
+                    BookTitle = repositoryBook.FindById(x.IdBook).Title,
+                    BookPages = repositoryBook.FindById(x.IdBook).Pages,
+                    SageName = repositorySage.FindById(x.IdSage).Name,
+                    SageAge = repositorySage.FindById(x.IdSage).Age
                 }).ToList();
 
                 foreach (var newSageBook in data)
@@ -132,7 +165,14 @@ namespace SageBookWinForms
                         IdSage = sage.Id
                     };
 
-                    repository.Add(sageBook);
+                    var isSageBook = repository.GetAll()
+                        .FirstOrDefault(x => x.IdBook == book.Id && x.IdSage == sage.Id);
+                    
+                    if (isSageBook == null)
+                        repository.Add(sageBook);
+                    else
+                        MessageBox.Show(@"SageBook already exists");
+
                 }
 
                 listBoxSageBook.Items.Clear();
@@ -144,21 +184,6 @@ namespace SageBookWinForms
 
         }
 
-        private void button1_Click(object sender, EventArgs e)
-        {
-            switch (_flag)
-            {
-                case "Add":
-                    AddSageBook();
-                    break;
-                case "Delete":
-                    DeleteSageBook();
-                    break;
-                case "Update":
-                    UpdateSageBook();
-                    break;
-            }
-        }
 
         private void DeleteSageBook()
         {
@@ -166,8 +191,7 @@ namespace SageBookWinForms
             {
                 var work = Form1.Work;
                 var repository = work.Repository<SageBook>();
-                var item = listBoxSageBook.SelectedItem as NewSageBook;
-                if (item != null)
+                if (listBoxSageBook.SelectedItem is NewSageBook item)
                 {
                     var sageBook = repository.FindById(item.Id);
                     repository.Remove(sageBook);
@@ -208,30 +232,24 @@ namespace SageBookWinForms
             }
         }
 
-        private void listBoxSageBook_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            if (_flag == "Update")
-            {
-                if (listBoxSageBook.SelectedIndex >= 0)
-                {
-                    listBoxBook.Enabled = true;
-                    listBoxSage.Enabled = true;
-                }
-            }
-        }
+        #endregion
+
     }
+
+    #region HelperClass
 
     public class NewSageBook
     {
         public int Id { get; set; }
         public int IdBook { get; set; }
         public int IdSage { get; set; }
-        public string Book_Title { get; set; }
-        public int Book_Pages { get; set; }
-        public string Sage_Name { get; set; }
-        public int Sage_Age { get; set; }
-
-        public override string ToString() => $"Sage name: {Sage_Name}, sage age: {Sage_Age}, book title: {Book_Title}, book pages: {Book_Pages}";
+        public string BookTitle { get; set; }
+        public int BookPages { get; set; }
+        public string SageName { get; set; }
+        public int SageAge { get; set; }
+        public override string ToString() => $"Sage name: {SageName}, sage age: {SageAge}, book title: {BookTitle}, book pages: {BookPages}";
     }
+    
+    #endregion
 
 }
